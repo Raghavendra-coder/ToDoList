@@ -11,7 +11,7 @@ from .models import Doctor, Patient, Appointment
 
 
 def vet_index(request):
-    patients = Patient.objects.all()
+    patients = Patient.objects.filter(user=request.user)
     initial = {'user': request.user}
     form = PatientForm(initial=initial)
     if request.method == 'POST':
