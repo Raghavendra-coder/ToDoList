@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import ProfileForm, UserForm, LoginForm, PatientForm, AppointmentForm
+from .forms import ProfileForm, UserForm, LoginForm, PatientForm, AppointmentForm, UserUpdateForm
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth import login, logout
@@ -77,14 +77,14 @@ def update_profile(request):
         p_form = ProfileForm(instance=user.user_profile)
     except:
         p_form = ProfileForm()
-    u_form = UserForm(instance=user)
+    u_form = UserUpdateForm(instance=user)
     if request.method == 'POST':
         try:
             p_form = ProfileForm(request.POST, request.FILES, instance=user.user_profile)
         except:
             p_form = ProfileForm(request.POST, request.FILES)
 
-        u_form = UserForm(request.POST, instance=user)
+        u_form = UserUpdateForm(request.POST, instance=user)
         if p_form.is_valid() and u_form.is_valid():
             user = u_form.save(commit=False)
             user.save()
