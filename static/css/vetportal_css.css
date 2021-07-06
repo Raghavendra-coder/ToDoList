@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-body{
+  width: 300px;
+  min-height: 400px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 12px 0px black;
+  overflow: hidden;
+  background-color: rgb(233, 233, 233);
+}
+nav div #profile-pic{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border : 1px solid rgb(163, 163, 163);
+    overflow: hidden;
+}
+/*pupten*/
+    img, svg {
+        width: 70px;
+}
+.container-fluid{
+    padding-left: 0;
+}
+#main-content{
+    margin: 10px;
+    background-color: rgb(233, 233, 233);
+}
+.toggle-btn{
+    border-radius: 5px;
+    outline: none;
+    border : 3px solid rgb(179, 179, 179);
+    background-color: rgb(255, 255, 255);
+}
+.form-control {
+    padding: 0!important;
+    background-color: rgb(233, 233, 233);
+    border:1px solid gray;
+}
+#signup-submit{
+    background-color: rgb(233, 233, 233);
+    border: 1px solid black ;
+    color: black;
+    transition: ease 0.3s;
+    border-radius: 15px;
+    padding: 0 2px;
+    font-size: 14px;
+}
+#signup-submit:hover{
+    background-color: black;
+    color: white;
+}
+#login-submit{
+    background-color: rgb(233, 233, 233);
+    border: 1px solid black ;
+    color: black;
+    transition: ease 0.3s;
+    border-radius: 15px;
+    padding: 0 2px;
+    font-size: 14px;
+    bottom: 10px;
+}
+#login-submit:hover{
+    background-color: black;
+    color: white;
+}
+
+#login-form{
+    padding: 10px;
+}
+.doctor-cards{
+    
+}
+.doctor-cards div .doctor-face{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid black;
+    overflow: hidden;
+}
+.doctor-cards div .book-button{
+    border: 1px solid rgb(33, 223, 33);
+    border-radius: 10px;
+    color: rgb(33, 223, 33);
+    transition: ease 0.4s;
+}
+.doctor-cards div .call-button{
+    height: 18px;
+    transition: ease 0.4s;
+    width: 80px;
+    background-color: transparent!important;
+    border: 1 px solid rgb(33, 223, 33);
+    color: rgb(33, 223, 33);
+    border-radius: 7px;
+    outline: none;
+    transition: ease 0.4s;
+}
+.doctor-cards div .book-button:hover, .call-button:hover{
+    background-color: rgb(33, 223, 33);
+    color: white;
+}
+.material-icons {
+    font-size: 12px!important;
+}
+@media(max-width: 576px){
+  
+}

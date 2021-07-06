@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/vetportal_css.css' %}">
+    <title>Vet-Portal</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" id="row" style="padding-top: 50px;">
+          <div class="main-body mx-auto p-0" id="main-body">
+
+            <!--navbar-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    
+                  <a class="navbar-brand" href="#"><img src="{% static 'images/pupten.png' %}"></a>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  </div>
+                    {% if request.user.is_authenticated %}
+                    <img class="profile-pic" id="profile-pic" src="{{ request.user.user_profile.profile_pic.url }}" alt="pp">
+                    {% else %}<img class="profile-pic" id="profile-pic" src="{% static 'images/profile_picture.png' %}" alt="pp">
+                    {% endif %}
+                </div>
+
+            </nav>
+              <div class="p-2 row">
+                  {% if request.user.is_authenticated %}
+                  <div class="col-6">
+                    <a href="{% url 'user_logout' %}" class="text-danger">Logout</a>
+                  </div>
+                  <div class="col-6 text-end">
+                    <a href="{% url 'update' %}" class="text-success">Update Profile</a>
+                  </div>
+                    {% endif %}
+              </div>
+
+
+           <!--Rest Contents-->
+          
+          
+          
+           <div class="col-md-10  mx-auto main-content-index">
+            
+            
+            <h4><b>Find and Book</b></h4>
+               <form class="search-form">
+            <input type="text" placeholder="Search doctor by city" name="city"
+                   class="search-field" {% if city %} value="{{ city }}" {% endif %}>
+            <select name="doctor" id="select_doctore" class="form-control mb-4 search-field">
+                <option value>Search doctor</option>
+                {% for i in all_doctors %}
+              <option value="{{ i.name }}" {% if searched_doctor == i.name %} selected {% endif %}>{{ i.name }}</option>
+                {% endfor %}
+            </select>
+               </form>
+            {% for i in doctors %}
+            <div class="doctor-cards my-2">
+                <div class="row">
+                  <div class="col-md-3 col-3 doctor-face p-0">
+                         <img src="{{ i.profile.url }}" class=doctor-image alt="dp">
+                  </div>
+                  <div class="col-md-5 col-5 doctor-info">
+                                  <h6><b>{{ i.name }}</b></h6>
+                                  <h6 style="font-size: 10px;">{{ i.qualification }}</h6>
+                                  <h6 style="font-size: 10px;">{{ i.experience }} years experience</h6>
+                                  <h6 style="font-size: 10px;">{{ i.address }}</h6>
+                  </div>
+                  <div class="col-md-4 col-4 book-doctor  text-center mx-auto">
+                                   <a href="https://api.whatsapp.com/send?phone=+91{{ i.mobile }}" target="_blank" class="btn call-button my-2" id="{{ forloop.counter }}callBtn"><h6 style="font-size: 10px; text-decoration: none;">✆{{ i.mobile }}</h6></a>
+                                   <a href="{% url 'doctor' d_id=i.id c_id=pk %}" class="book-button" style="font-size: 7px; text-decoration: none;" id="{{ forloop.counter }}bookBtn"><b>Appointment</b></a>  
+                  </div>
+                    {% empty %}
+                    <p class="text-danger mb-0">No doctor found</p>
+                  {% endfor %}
+                </div>
+              </div>
+          </div>
+          </div>
+      </div>
+  </div>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#toggle-btn').click(function(){
+                document.getElementById('toggle-btn').style.border = "3px solid rgb(98, 166, 255)"
+            });
+            $(".search-field").change(function(){
+
+                $(".search-form").submit()
+            })
+        });
+    </script>
+  <script>
+  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
+  </script>
+    
+
+
+  </body>
+</html>

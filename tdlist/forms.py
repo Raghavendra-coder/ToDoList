@@ -9,7 +9,6 @@ class ToDoListForm(forms.ModelForm):
         widgets = {
             'start_date' : forms.TextInput(attrs={'type': 'date'}),
             'com_date': forms.TextInput(attrs={'type': 'date'}),
-
             'title': forms.TextInput(attrs={'placeholder': 'Title...'}),
         }
 
