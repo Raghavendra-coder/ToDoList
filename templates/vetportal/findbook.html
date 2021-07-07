@@ -53,7 +53,7 @@
             <h4><b>Find and Book</b></h4>
                <form class="search-form">
             <input type="text" placeholder="Search doctor by city" name="city"
-                   class="search-field" {% if city %} value="{{ city }}" {% endif %}>
+                   class="search-field form-control" {% if city %} value="{{ city }}" {% endif %}>
             <select name="doctor" id="select_doctore" class="form-control mb-4 search-field">
                 <option value>Search doctor</option>
                 {% for i in all_doctors %}
