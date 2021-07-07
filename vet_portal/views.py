@@ -162,7 +162,7 @@ def slip(request, pk):
 
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('vet_index'))
+    return HttpResponseRedirect(reverse('login'))
 
 
 
